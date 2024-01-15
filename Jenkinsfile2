@@ -8,8 +8,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('sonarserver') {
-                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b -Dsonar.scanner.force-deprecated-java-version=true'
-                    }
+                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b -Dsonar.organization=sergio2025 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=57b26a1e2e1e05f5ecb176ecdbcc1c5d6d532592 -Dsonar.scanner.force-deprecated-java-version=true'                    }
                 }
             }
         }
