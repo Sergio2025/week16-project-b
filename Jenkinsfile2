@@ -1,16 +1,14 @@
 pipeline {
-    agent any
+    agent any 
     tools {
-        maven "M2_HOME"
+        maven 'M2_HOME' 
     }
     stages {
         stage('sonarqube scan') {
             steps {
-                script {
-                    // Use withSonarQubeEnv to specify SonarQube server configuration
-                    withSonarQubeEnv('sonarserver') {
-                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b'
-                    }
+                withSonarQubeEnv('sonarserver') { 
+                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b'
+                
                 }
             }
         }
@@ -19,5 +17,5 @@ pipeline {
                 sh 'mvn clean test compile install package'
             }
         }
-    }    
+    }
 }
