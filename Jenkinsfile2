@@ -4,21 +4,28 @@ pipeline {
         maven 'M2_HOME'
     }
     stages {
-        stage('sonarqube scan') {
+        stage('SonarQube Scan') {
             steps {
-                withSonarQubeEnv('sonarserver') { 
-                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b -Dsonar.scanner.force-deprecated-java-version=true'
-                    // sh 'mvn sonar:sonar'
+                script {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b -Dsonar.scanner.force-deprecated-java-version=true'
+                    }
                 }
             }
         }
-        stage('all maven commands') {
+        stage('All Maven Commands') {
             steps {
-                sh 'mvn clean test compile install package'
+                script {
+                    sh 'mvn clean test compile install package'
+                }
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                // Add any post-build actions or clean-up steps here
             }
         }
     }
 }
-
-
-
