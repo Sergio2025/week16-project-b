@@ -3,19 +3,20 @@ pipeline {
     tools {
         maven 'M2_HOME'
     }
-    stages{
-        stage('sonarqube scan'){
-            steps{
-                withSonarQubeEnv('sonarserver'){ 
-              sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kserge2001_week16-code'
-             // sh 'mvn sonar:sonar'
-            }
+    stages {
+        stage('sonarqube scan') {
+            steps {
+                withSonarQubeEnv('sonarserver') { 
+                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b'
+                    // sh 'mvn sonar:sonar'
+                }
             }
         }
-        stage('all maven commands'){
-            steps{
+        stage('all maven commands') {
+            steps {
                 sh 'mvn clean test compile install package'
             }
         }
     }
 }
+
