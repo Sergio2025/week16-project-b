@@ -6,10 +6,12 @@ pipeline {
     stages {
         stage('sonarqube scan') {
             steps {
-                withSonarQubeEnv('sonarserver'){
-
-                
-                sh 'mvn mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b'
+                script {
+                    // Use withSonarQubeEnv to specify SonarQube server configuration
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b'
+                    }
+                }
             }
         }
         stage('all maven commands') {
@@ -19,4 +21,3 @@ pipeline {
         }
     }    
 }
-
