@@ -21,11 +21,4 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            script {
-                // Add any post-build actions or clean-up steps here
-            }
-        }
-    }
 }
