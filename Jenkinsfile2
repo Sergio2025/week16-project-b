@@ -7,11 +7,8 @@ pipeline {
         stage('sonarqube scan') {
             steps {
                 script {
-                    // Use withSonarQubeEnv to specify SonarQube server configuration
                     withSonarQubeEnv('sonarserver') {
-                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b'
-                        // You may uncomment the line below if you want to use 'mvn sonar:sonar'
-                        // sh 'mvn sonar:sonar'
+                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kserge2001_week16-code -Dsonar.scanner.force-deprecated-java-version=true'
                     }
                 }
             }
@@ -23,4 +20,5 @@ pipeline {
         }
     }
 }
+
 
