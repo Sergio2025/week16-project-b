@@ -4,21 +4,33 @@ pipeline {
         maven 'M2_HOME'
     }
     stages {
-        stage('sonarqube scan') {
+        stage('SonarQube Scan') {
             steps {
-                withSonarQubeEnv('sonarserver') { 
-                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b -Dsonar.scanner.force-deprecated-java-version=true'
-                    // sh 'mvn sonar:sonar'
+                script {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b -Dsonar.organization=sergio2025 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=57b26a1e2e1e05f5ecb176ecdbcc1c5d6d532592 -Dsonar.scanner.force-deprecated-java-version=true'                    }
                 }
             }
         }
-        stage('all maven commands') {
+        stage('All Maven Commands') {
             steps {
-                sh 'mvn clean test compile install package'
+                script {
+                    sh 'mvn clean test compile install package'
+                }
+            }
+            
+        }
+        stage('upload artifact'){
+            staps{
+
+                sh 'curl -uadmin:AP5mZ1TGxbfJg5s8o7m1rRSRP4i -T \
+                target/bio*.jar \
+                "http://ec2-54-160-72-222.compute-1.amazonaws.com:8081/artifactory/geoapp/"'
             }
         }
     }
 }
+
 
 
 
