@@ -17,6 +17,7 @@ pipeline {
                 script {
                     sh 'mvn clean test compile install package'
                 }
+<<<<<<< HEAD
             }
             
         }
@@ -26,11 +27,16 @@ pipeline {
                 sh 'curl -uadmin:AP5mZ1TGxbfJg5s8o7m1rRSRP4i -T \
                 target/bio*.jar \
                 "http://ec2-54-160-72-222.compute-1.amazonaws.com:8081/artifactory/geoapp/"'
+=======
+>>>>>>> 84ac792af6958d9431b42dd63db1560e8107a83c
             }
         }
     }
 }
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 84ac792af6958d9431b42dd63db1560e8107a83c
