@@ -1,17 +1,19 @@
 pipeline {
     agent {
-        docker { image 'node:20.10.0-alpine3.19' }
+        label 'ansible'
     }
     stages {
-        stage('Check Current Directory') {
+        stage('check current directory') {
             steps {
                 sh 'pwd'
-                sh 'id'
-                sh "mkdir \$(date '+%Y%m%d_%H%M%S')"
+                sh 'whoami'
+                sh 'mkdir $(date "+%Y%m%d_%H%M%S")'
             }
         }
     }
 }
+
+
 
 
 
