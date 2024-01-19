@@ -26,7 +26,7 @@ pipeline {
         }
         stage('image build') {
             steps {
-                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 0260-5220-4512.dkr.ecr.us-east-1.amazonaws.com '
+                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 026052204512.dkr.ecr.us-east-1.amazonaws.com'
                 sh 'docker build -t geoapp .'
             }
         }
