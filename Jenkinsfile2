@@ -7,7 +7,10 @@ pipeline {
         stage('sonarqube scan') {
             steps {
                 withSonarQubeEnv('sonarserver') { 
-                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b'
+                    sh 'sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+    -Dsonar.projectKey=Sergio2025_week16-project-b \
+    -Dsonar.java.source=17 \
+    -Dsonar.java.target=17''
                     // sh 'mvn sonar:sonar'
                 }
             }
