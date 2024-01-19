@@ -6,12 +6,12 @@ pipeline {
     stages {
         stage('sonarqube scan') {
             steps {
-                withSonarQubeEnv('sonarserver') { 
-                    sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-                        -Dsonar.projectKey=Sergio2025_week16-project-b \
-                        -Dsonar.scanner.force-deprecated-java-version=true'
-                        
-                    // sh 'mvn sonar:sonar'
+                script {
+                    def mavenHome = tool 'M2_HOME'
+                    def mavenCMD = "${mavenHome}/bin/mvn"
+                    def scannerCMD = "${mavenHome}/bin/mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Sergio2025_week16-project-b -Dsonar.scanner.force-deprecated-java-version=true"
+
+                    sh scannerCMD
                 }
             }
         }
@@ -41,9 +41,5 @@ pipeline {
         }
     }
 }
-
-
-    
-  
 
 
